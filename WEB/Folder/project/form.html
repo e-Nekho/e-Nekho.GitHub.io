@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Тестовая форма</title>
+</head>
+<body>
+    <header>
+        <h1>Тестовая форма HTML</h1>
+    </header>
+    <main>
+        <section>
+            <label>
+                ФИО: <br>
+                <input name="field-name"
+                type="text"
+                title="Введите ваше ФИО"
+                placeholder="Иванов Иван Иванович"
+                >
+            </label>
+            <br>
+            <label>
+                Номер телефона: <br>
+                <input name="field-tel"
+                type="tel"
+                title="Введите ваш номер"
+                placeholder="+7 123 456-78-90"
+                pattern="+[0-9]{1-3} [0-9]{3} [0-9]{3}-[2]{2}-[2]{2}"
+                >
+            </label>
+            <br>
+            <label>
+                Адрес электронной почты: <br>
+                <input name="field-email"
+                type="email"
+                title="Введите ваш адрес электронной почты"
+                placeholder="ExampleAdress@example.com"
+                >
+            </label>
+            <br>
+            <label>
+                Дата рождения: <br>
+                <input name="field-date"
+                type="date"
+                value="2025-09-14"
+                >
+            </label>
+            <br style="margin-top: 5px">
+            <label>
+                Выберите ваш пол:
+                <label><br>
+                    <input name="radio-group-1"
+                    checked="checked"
+                    type="radio">
+                    Мужской
+                </label>
+                <label>
+                    <input name="radio-group-1"
+                    type="radio">
+                    Женский
+                </label>
+                <label>
+                    <input name="radio-group-1"
+                    type="radio"
+                    class="radio-gender-unique">
+                    Другой
+                </label>
+                <!--начало шуточной секции, не имеющей отношения к лабароторной-->
+                <div id="other-gender-fields" class="section-gender-fun">
+                    🚫 В Российской Федерации существует только два пола.
+                </div>
+                <!-- Конец шуточной секции-->
+            </label>
+            <div id="main-fields">
+            <label>
+                Ваши любимые языки программирования <br>
+                <select name="programm-lang[]"
+                multiple="multiple"
+                class="multibox-1"
+                size="10">
+                    <option value="Pascal">Pascal</option>
+                    <option value="C">C</option>
+                    <option value="C++">C++</option>
+                    <option value="JavaScript">javaScript</option>
+                    <option value="PHP">PHP</option>
+                    <option value="Python">Python</option>
+                    <option value="Haskel">Haskel</option>
+                    <option value="Clojure">Clojure</option>
+                    <option value="Prolog">Prolog</option>
+                    <option value="Scala">Scala</option>
+                </select>
+            </label>
+            <br><br>
+            <label>
+                Напишите немного о себе: <br>
+                <textarea name="multi-field"></textarea>
+            </label>
+            <br>
+            <label>
+                <input name="check-1"
+                type="checkbox">
+                С контрактом ознакомлен(a)
+            </label>
+            <br><br><br>
+            <input type="button" value="Сохранить">
+            </div>
+        </section>
+    </main>
+</body>
+
+<!-- Скрипты, обеспечивающие логику секции-шутки, представленной выше
+    Не относится к условиям лабароторной напрямую!-->
+<script>
+        const radioUnique = document.querySelector('.radio-gender-unique');
+        const radioGroup = document.getElementsByName('radio-group-1');
+        const otherFields = document.getElementById('other-gender-fields');
+        const mainFields = document.getElementById('main-fields');
+
+        function updateFormState() {
+            if (radioUnique.checked) {
+                otherFields.style.maxHeight = '200px';
+                mainFields.classList.add('disabled-section');
+                mainFields.querySelectorAll('input, select, textarea, button').forEach(el => el.disabled = true);
+            } else {
+                otherFields.style.maxHeight = '0';
+                mainFields.classList.remove('disabled-section');
+                mainFields.querySelectorAll('input, select, textarea, button').forEach(el => el.disabled = false);
+            }
+        }
+
+        radioGroup.forEach(r => r.addEventListener('change', updateFormState));
+        window.addEventListener('DOMContentLoaded', updateFormState);
+    </script>
+</html>

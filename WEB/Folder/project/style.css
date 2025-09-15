@@ -1,0 +1,58 @@
+html {
+    font-family: Arial, "Helvetica Neue", Helvetica, sans-serif;
+}
+
+h1
+{
+    text-align: center;
+}
+
+body {
+    background-color:silver;
+}
+
+header {
+    margin-bottom: 6px;
+}
+
+main {
+    background-color: white;
+    border: solid 2px black;
+}
+
+li {
+    margin-top: 4px;
+}
+
+section {
+    padding: 5px;
+    border: solid 2px black;
+}
+
+a {
+        color:rgb(61, 0, 105);
+}
+
+.multibox-1 {
+    width: 90px;
+}
+
+.footer-main {
+    text-align: center;
+    font-size: x-large;
+    
+}
+
+.section-gender-fun {
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.4s cubic-bezier(.4,0,.2,1);
+    margin-bottom: 10px;
+    color: rgb(226, 42, 29);
+    font-weight: bold;
+}
+
+.disabled-section {
+    opacity: 0.5;
+    pointer-events: none;
+}
