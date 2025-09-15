@@ -11,7 +11,7 @@
         <h1>Тестовая форма HTML</h1>
     </header>
     <main>
-        <section>
+        <div>
             <label>
                 ФИО: <br>
                 <input name="field-name"
@@ -48,7 +48,7 @@
                 >
             </label>
             <br style="margin-top: 5px">
-            <label>
+            <div style="padding-top:8px">
                 Выберите ваш пол:
                 <label><br>
                     <input name="radio-group-1"
@@ -72,7 +72,7 @@
                     🚫 В Российской Федерации существует только два пола.
                 </div>
                 <!-- Конец шуточной секции-->
-            </label>
+            </div>
             <div id="main-fields">
             <label>
                 Ваши любимые языки программирования <br>
@@ -106,13 +106,13 @@
             <br><br><br>
             <input type="button" value="Сохранить">
             </div>
-        </section>
+        </div>
     </main>
-</body>
+
 
 <!-- Скрипты, обеспечивающие логику секции-шутки, представленной выше
     Не относится к условиям лабароторной напрямую!-->
-<script>
+    <script>
         const radioUnique = document.querySelector('.radio-gender-unique');
         const radioGroup = document.getElementsByName('radio-group-1');
         const otherFields = document.getElementById('other-gender-fields');
@@ -133,4 +133,6 @@
         radioGroup.forEach(r => r.addEventListener('change', updateFormState));
         window.addEventListener('DOMContentLoaded', updateFormState);
     </script>
+    
+</body>
 </html>
