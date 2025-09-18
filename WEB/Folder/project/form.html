@@ -16,102 +16,109 @@
         <h1>Тестовая форма HTML</h1>
     </header>
     <main>
-        <div>
-            <label>
-                ФИО: <br>
-                <input name="field-name"
-                type="text"
-                title="Введите ваше ФИО"
-                placeholder="Иванов Иван Иванович"
-                >
-            </label>
-            <br>
-            <label>
-                Номер телефона: <br>
-                <input name="field-tel"
-                type="tel"
-                title="Введите ваш номер"
-                placeholder="+7 123 456-78-90"
-                pattern="+[0-9]{1-3} [0-9]{3} [0-9]{3}-[2]{2}-[2]{2}"
-                >
-            </label>
-            <br>
-            <label>
-                Адрес электронной почты: <br>
-                <input name="field-email"
-                type="email"
-                title="Введите ваш адрес электронной почты"
-                placeholder="ExampleAdress@example.com"
-                >
-            </label>
-            <br>
-            <label>
-                Дата рождения: <br>
-                <input name="field-date"
-                type="date"
-                value="2025-09-14"
-                >
-            </label>
-            <br style="margin-top: 5px">
-            <div style="padding-top:8px">
-                Выберите ваш пол:
-                <label><br>
-                    <input name="radio-group-1"
-                    checked="checked"
-                    type="radio">
-                    Мужской
-                </label>
+        <form id="test-form" novalidate>
+            <div class="form">
                 <label>
-                    <input name="radio-group-1"
-                    type="radio">
-                    Женский
+                    ФИО: <br>
+                    <input name="field-name"
+                    type="text"
+                    title="Введите ваше ФИО"
+                    placeholder="Иванов Иван Иванович"
+                    >
                 </label>
+                <br>
                 <label>
-                    <input name="radio-group-1"
-                    type="radio"
-                    class="radio-gender-unique">
-                    Другой
+                    Номер телефона: <br>
+                    <input name="field-tel"
+                    type="tel"
+                    title="Введите ваш номер"
+                    placeholder="+7 123 456-78-90"
+                    pattern="^\+?[0-9\s\-()]{10,20}$"
+                    maxlength="20"
+                    autocomplete="off"
+                    >
                 </label>
-                <!--начало шуточной секции, не имеющей отношения к лабароторной-->
-                <div id="other-gender-fields" class="section-gender-fun">
-                    🚫 В Российской Федерации существует только два пола.
+                <div class="error-message" id="error-tel"></div>
+                <br>
+                <label>
+                    Адрес электронной почты: <br>
+                    <input name="field-email"
+                    type="email"
+                    title="Введите ваш адрес электронной почты"
+                    placeholder="ExampleAdress@example.com"
+                    >
+                </label>
+                <div class="error-message" id="error-email"></div>
+                <br>
+                <label>
+                    Дата рождения: <br>
+                    <input name="field-date"
+                    type="date"
+                    value="2025-09-14"
+                    >
+                </label>
+                <br style="margin-top: 5px">
+                <div style="padding-top:8px">
+                    Выберите ваш пол:
+                    <label><br>
+                        <input name="radio-group-1"
+                        checked="checked"
+                        type="radio">
+                        Мужской
+                    </label>
+                    <label>
+                        <input name="radio-group-1"
+                        type="radio">
+                        Женский
+                    </label>
+                    <label>
+                        <input name="radio-group-1"
+                        type="radio"
+                        class="radio-gender-unique">
+                        Другой
+                    </label>
+                    <!--начало шуточной секции, не имеющей отношения к лабароторной-->
+                    <div id="other-gender-fields" class="section-gender-fun">
+                        🚫 В Российской Федерации существует только два пола.
+                    </div>
+                    <!-- Конец шуточной секции-->
                 </div>
-                <!-- Конец шуточной секции-->
+                <div id="main-fields">
+                <label>
+                    Ваши любимые языки программирования <br>
+                    <select name="programm-lang[]"
+                    multiple="multiple"
+                    class="multibox-1"
+                    size="10">
+                        <option value="Pascal">Pascal</option>
+                        <option value="C">C</option>
+                        <option value="C++">C++</option>
+                        <option value="JavaScript">javaScript</option>
+                        <option value="PHP">PHP</option>
+                        <option value="Python">Python</option>
+                        <option value="Haskel">Haskel</option>
+                        <option value="Clojure">Clojure</option>
+                        <option value="Prolog">Prolog</option>
+                        <option value="Scala">Scala</option>
+                    </select>
+                </label>
+                <br><br>
+                <label>
+                    Напишите немного о себе: <br>
+                    <textarea name="multi-field"></textarea>
+                </label>
+                <br>
+                <label style="display:block;position:relative">
+                    <input name="check-1"
+                    type="checkbox"> С контрактом ознакомлен(a)
+                    <div class="error-message" id="error-check" style="margin-top:4px"></div>
+                </label>
+                <br><br><br>
+                <input type="submit" value="Сохранить">
+                <div id="form-message" class="form-message"></div>
+                </div>
             </div>
-            <div id="main-fields">
-            <label>
-                Ваши любимые языки программирования <br>
-                <select name="programm-lang[]"
-                multiple="multiple"
-                class="multibox-1"
-                size="10">
-                    <option value="Pascal">Pascal</option>
-                    <option value="C">C</option>
-                    <option value="C++">C++</option>
-                    <option value="JavaScript">javaScript</option>
-                    <option value="PHP">PHP</option>
-                    <option value="Python">Python</option>
-                    <option value="Haskel">Haskel</option>
-                    <option value="Clojure">Clojure</option>
-                    <option value="Prolog">Prolog</option>
-                    <option value="Scala">Scala</option>
-                </select>
-            </label>
-            <br><br>
-            <label>
-                Напишите немного о себе: <br>
-                <textarea name="multi-field"></textarea>
-            </label>
-            <br>
-            <label>
-                <input name="check-1"
-                type="checkbox">
-                С контрактом ознакомлен(a)
-            </label>
-            <br><br><br>
-            <input type="button" value="Сохранить">
-            </div>
-        </div>
+        </form>
     </main>
 
 
@@ -137,6 +144,83 @@
 
         radioGroup.forEach(r => r.addEventListener('change', updateFormState));
         window.addEventListener('DOMContentLoaded', updateFormState);
+
+        // Скрипт проверки для сохранения формы
+
+        const form = document.getElementById('test-form');
+    const messageBox = document.getElementById('form-message');
+
+    // Автокорректировка номера телефона
+    const telInput = form.querySelector('input[name="field-tel"]');
+    telInput.addEventListener('input', function(e) {
+        let val = telInput.value.replace(/[^\d]/g, '');
+        if (val.length > 11) val = val.slice(0, 11);
+        let formatted = '';
+        if (val.length > 0) {
+            formatted = '+7 ';
+            if (val.length > 1) formatted += val.slice(1,4);
+            if (val.length > 4) formatted += ' ' + val.slice(4,7);
+            if (val.length > 7) formatted += '-' + val.slice(7,9);
+            if (val.length > 9) formatted += '-' + val.slice(9,11);
+        }
+        telInput.value = formatted;
+    });
+
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        let hasError = false;
+        messageBox.textContent = '';
+
+        // Очистка ошибок
+        document.querySelectorAll('.error-message').forEach(el => el.textContent = '');
+
+        // Проверка ФИО
+        const fio = form.querySelector('input[name="field-name"]');
+        if (!fio.value.trim()) {
+            document.getElementById('error-fio')?.remove();
+            fio.insertAdjacentHTML('afterend', '<div class="error-message" id="error-fio">Введите ФИО</div>');
+            hasError = true;
+        }
+
+        // Проверка телефона
+        const tel = form.querySelector('input[name="field-tel"]');
+        const telPattern = /^\+7 \d{3} \d{3}-\d{2}-\d{2}$/;
+        if (!tel.value.trim() || !telPattern.test(tel.value.trim())) {
+            document.getElementById('error-tel').textContent = 'Введите корректный номер телефона';
+            hasError = true;
+        }
+
+        // Проверка email
+        const email = form.querySelector('input[name="field-email"]');
+        const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email.value.trim() || !emailPattern.test(email.value.trim())) {
+            document.getElementById('error-email').textContent = 'Введите корректный email';
+            hasError = true;
+        }
+
+        // Проверка даты
+        const date = form.querySelector('input[name="field-date"]');
+        if (!date.value.trim()) {
+            date.insertAdjacentHTML('afterend', '<div class="error-message">Введите дату рождения</div>');
+            hasError = true;
+        }
+
+        // Проверка чекбокса
+        const check = form.querySelector('input[name="check-1"]');
+        if (!check.checked) {
+            document.getElementById('error-check').textContent = 'Необходимо согласиться с контрактом';
+            hasError = true;
+        }
+
+        if (!hasError) {
+            messageBox.textContent = '✅ Форма сохранена!';
+            messageBox.classList.add('success');
+        } else {
+            messageBox.textContent = '❌ Исправьте ошибки в форме';
+            messageBox.classList.remove('success');
+        }
+    });
     </script>
     
 </body>

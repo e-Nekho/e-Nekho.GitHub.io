@@ -18,6 +18,9 @@ header {
 main {
     background-color: white;
     border: solid 2px black;
+    .form {
+        margin: 7px;
+    }
 }
 
 li {
@@ -55,4 +58,19 @@ a {
 .disabled-section {
     opacity: 0.5;
     pointer-events: none;
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 4px;
+}
+
+.form-message {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.form-message.success {
+    color: green;
 }
