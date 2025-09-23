@@ -1,0 +1,58 @@
+body {
+    background-color: rgb(187, 190, 207);
+}
+
+header {
+    width: 100%;
+}
+
+.border-box {
+    border: solid 2px rgb(29, 29, 29);
+    background-color: white;
+}
+
+.border-box.main-field {
+    max-width: 960px;
+    min-width: 600px;
+}
+
+.nav-menu-container ul {
+    list-style-type: none;
+}
+
+main .main-field-name {
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+
+table#product-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    border: solid 1px black;
+
+    td {
+        border: dashed 1px black;
+        padding: 5px;
+    }
+    td[rowspan] {
+        background-color: silver;
+    }
+    th {
+        border: solid 1px black;
+        padding: 5px;
+        background-color: silver;
+    }
+    .even-row {
+        background-color: lightgray;
+    }
+    .odd-row {
+        background-color: white;
+    }
+}
+
+a {
+    text-decoration: none;
+    color: cornflowerblue;
+}
