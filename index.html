@@ -34,6 +34,11 @@
             color: white;
             transform: translateX(10px);
         }
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            color: #666;
+        }
     </style>
 </head>
 <body>
@@ -44,11 +49,30 @@
         <li><a href="lab1/Folder/project/index.html">🔬 Лабораторная работа 1 (HTML/CSS)</a></li>
         <li><a href="lab2/Folder/project/index.html">🔬 Лабораторная работа 2 (HTML/CSS)</a></li>
         <li><a href="lab3/Folder/project/index.html">🔬 Лабораторная работа 3 (HTML/CSS)</a></li>
-        <li><a href="lab4/public/index.html">⚛️ Лабораторная работа 4 (React)</a></li>
+        <li><a href="#" onclick="redirectToReact()">⚛️ Лабораторная работа 4 (React)</a></li>
     </ul>
 
     <footer>
         <p><small>Используйте кнопку "Назад" в браузере чтобы вернуться к этому меню</small></p>
     </footer>
+
+    <script>
+        function redirectToReact() {
+            // Сохраняем текущий путь для возможного возврата
+            sessionStorage.setItem('returnPath', window.location.pathname);
+            
+            // Редирект на React приложение
+            window.location.href = 'lab4/public/index.html';
+            
+            // Альтернативный вариант - открыть в новой вкладке:
+            // window.open('lab4/public/index.html', '_blank');
+        }
+
+        // Автоматический редирект если нужно
+        // Например, если пользователь попал сюда по ошибке
+        if (window.location.search.includes('redirect=react')) {
+            redirectToReact();
+        }
+    </script>
 </body>
 </html>
