@@ -1,0 +1,130 @@
+
+.links-block {
+  width: 100%;
+  max-width: var(--content-max, 960px);
+  margin: 40px auto;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(4px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.links-block:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.links-block h2.main-field-name {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #444;
+  padding-bottom: 8px;
+}
+
+.main-field.border-box {
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  padding: 16px 20px;
+  background-color: #fafafa;
+  overflow-x: auto;
+}
+
+.ref-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.ref-list li {
+  position: relative;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #333;
+  padding: 6px 8px;
+  border-left: 4px solid transparent;
+  transition: background-color 0.25s ease, border-color 0.25s ease;
+}
+
+.ref-list li:hover {
+  background-color: rgba(0, 120, 255, 0.1);
+  border-color: #0078ff;
+}
+
+.ref-list a {
+  color: #004aad;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s ease, text-shadow 0.2s ease;
+  word-break: break-word;
+}
+
+.ref-list a:hover {
+  color: #0078ff;
+  text-shadow: 0 0 4px rgba(0, 120, 255, 0.4);
+}
+
+
+.ref-list img {
+  display: block;
+  max-width: 100%;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.ref-list img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.35);
+}
+
+
+.ref-list ol {
+  list-style: decimal inside;
+  margin-top: 6px;
+  margin-left: 12px;
+  padding-left: 12px;
+}
+
+.ref-list ol li {
+  padding: 2px 0;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 768px) {
+  .links-block {
+    padding: 16px;
+  }
+
+  .ref-list li {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .links-block h2.main-field-name {
+    font-size: 1.3rem;
+  }
+}
+
+@keyframes fadeInRef {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.links-block,
+.ref-list li {
+  animation: fadeInRef 0.4s ease both;
+}

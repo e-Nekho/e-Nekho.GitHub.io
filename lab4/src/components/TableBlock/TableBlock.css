@@ -1,0 +1,97 @@
+.table-block {
+  width: 100%;
+  max-width: var(--content-max, 960px);
+  margin: 40px auto;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(4px);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+
+.table-block:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2);
+}
+
+.table-block h2.main-field-name {
+  text-align: center;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #444;
+  padding-bottom: 8px;
+}
+
+.table-block .main-field.border-box {
+  border: 2px solid #ccc;
+  border-radius: 12px;
+  padding: 20px;
+  background-color: #fafafa;
+  overflow-x: auto;
+}
+
+#product-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  margin-top: 12px;
+  animation: fadeInRef 0.5s ease both;
+}
+
+#product-table th,
+#product-table td {
+  border: 1px solid #ccc;
+  padding: 10px 14px;
+  text-align: center;
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+#product-table th {
+  background-color: #004aad;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+}
+
+#product-table tr.odd-row {
+  background-color: #f7faff;
+}
+
+#product-table tr.even-row {
+  background-color: #ffffff;
+}
+
+#product-table tr:hover {
+  background-color: rgba(0, 120, 255, 0.1);
+}
+
+#product-table td[rowspan] {
+  background-color: #e8f3ff;
+  font-weight: 600;
+}
+
+#product-table-name {
+  text-align: center;
+  font-size: 1.3rem;
+  margin-top: 8px;
+  color: #2a2a2a;
+}
+
+@media (max-width: 768px) {
+  #product-table th,
+  #product-table td {
+    padding: 8px;
+    font-size: 0.9rem;
+  }
+
+  #product-table-name {
+    font-size: 1.1rem;
+  }
+
+  .table-block {
+    padding: 16px;
+  }
+}

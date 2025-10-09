@@ -1,0 +1,17 @@
+@media (min-width: 768px) {
+    .order-1 { order: 1; }
+    .order-2 { order: 2; }
+    .order-3 { order: 3; }
+}
+
+@media (max-width: 900px){
+  :root{ --header-height: 72px; }
+  .user-form{ grid-template-columns: 1fr; }
+  .logo{ min-width:48px; }
+  .header-nav{ display:none; }
+}
+
+@media (max-width: 520px){
+  .sitename h1{ font-size:1.0rem; }
+  .main-navigation__list{ gap:10px; font-size:0.95rem; }
+}

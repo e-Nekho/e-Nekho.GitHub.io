@@ -1,0 +1,30 @@
+:root{
+--content-max: 960px;
+--header-height: 84px;
+--nav-height: 48px;
+--accent: #2b6cb0;
+--muted: #6b7280;
+--glass: rgba(255,255,255,0.75);
+}
+
+/* Фон страницы */
+body, html, #root {
+height: 100%;
+margin: 0;
+}
+
+.page-root{
+min-height:100%;
+background-image: url('https://i.pinimg.com/736x/1b/da/99/1bda99f56d4a015d83a1b0a56a920a5a.jpg'); /* замените на ваше изображение */
+background-size: cover;
+background-position: center top;
+background-attachment: fixed;
+display:flex;
+flex-direction:column;
+}
+
+.container{
+max-width: var(--content-max);
+margin: 0 auto;
+padding: 0 16px;
+}
