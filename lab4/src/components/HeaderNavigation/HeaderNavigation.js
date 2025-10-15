@@ -5,7 +5,7 @@ function HeaderNavigation() {
     <nav className="header-nav" aria-label="header navigation">
       <div className="header-nav__row header-nav__row--top">
         <div className="header-nav__left">
-          <a href="#" className="nav-link">Home</a>
+          <a href="../../" className="nav-link">Home</a>
           <a href="#" className="nav-link">Account</a>
         </div>
         <div className="header-nav__right">
