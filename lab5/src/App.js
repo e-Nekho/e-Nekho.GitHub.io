@@ -1,14 +1,15 @@
 import {useState, useMemo, useEffect} from 'react'
+import PickedServices from './Hooks/PickedServices/PickedServices';
 import Header from './Components/Header/Header'
 import Main from './Components/Main/Main';
 import './App.css';
 
 function App() {
   const category = [
-    {id: 1, name: 'Секрет'   },
-    {id: 2, name: 'Мармелад' },
-    {id: 3, name: 'Шоколад'  },
-    {id: 4, name: "Фрукты"   }
+    {id: 0, name: 'Секрет'   },
+    {id: 1, name: 'Мармелад' },
+    {id: 2, name: 'Шоколад'  },
+    {id: 3, name: "Фрукты"   }
   ];
   const typesMarmalade =[
     'Яблоко',
@@ -28,7 +29,7 @@ function App() {
   ];
   
   const strange = [
-
+    {id: 1, logo: '', name: 'Случайный бокс №1', price: 50, discount: 0, count: 0}
   ];
   const marmalade = [
     { id: 1, logo: './images/marmalade-strips.jpg',   name: 'Ленточки кислые',      price: 100,   discount: 0,  count: 0 },
@@ -44,18 +45,24 @@ function App() {
 
   ];
 
-  const [picked, setPicked] = useMemo([]);
-  const total = useMemo(() => {
-    return picked.reduce((acc, service) => acc + service.total, 0)
-  },[picked]);
+  const picked = PickedServices();
 
+  const total = useMemo(() => {
+    return picked.picked.reduce((acc, service) => acc + service.total, 0)
+  },[picked]);
 
   return (
     <div className="App">
       <Header />
       <Main 
       categories={category}
-      rawServices={[strange, marmalade, chocolate, fruits]}/>
+      rawServices={[strange, marmalade, chocolate, fruits]}
+      typesMarmalade={typesMarmalade}
+      typesChocolate={typesChocolate}
+      bonuses={bonus}
+      pickedServices={picked}
+      total={total}
+      />
     </div>
   );
 }
