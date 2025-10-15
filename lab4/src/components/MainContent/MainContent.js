@@ -7,9 +7,11 @@ import FormBlock from '../FormBlock/FormBlock';
 function MainContent() {
     return (
         <main className="main-content">
-            <TableBlock />
-            <RefBlock />
-            <FormBlock />
+            <div className="main-content-container">
+                <TableBlock />
+                <RefBlock />
+                <FormBlock />
+            </div>
         </main>
     );
 }
