@@ -7,21 +7,22 @@ export default function CookedService({
     name='null',
     type={},
     discount=0,
-    total=0,
-    discountTotal=0,
-    bonusSubServices={},
+    totalPrice=0,
+    rawTotalPrice=0,
+    subServices=[],
     onRemoveClick,
-    oncountChange
+    onCountChange
 }) {
     const cookedService = {
         category: category,
         id: id,
         logo: logo,
         name: name,
-        pickedType: type,
-        totalPrice: total,
+        type: type,
+        totalPrice: totalPrice,
+        rawTotalPrice: rawTotalPrice,
         discount: discount,
-        subServices: bonusSubServices ?? []
+        subServices: subServices
     }
 
     return (
@@ -43,7 +44,7 @@ export default function CookedService({
                 </div>
                 <div className='cooked-service-container-name'>
                     <label className='cooked-service-name'>{name}</label>
-                    <label className='cooked-service-type'>{type}</label>
+                    <label className='cooked-service-type'>{type.name}</label>
                 </div>
                 <div className='cooked-service-container-price'>
                     <div className='cooked-service-container-remove-button'>
@@ -55,7 +56,33 @@ export default function CookedService({
                     </div>
                 </div>
                 <div className='cooked-service-container-bottom'>
-                    
+                    // TODO не редактировалось и отсутствует управление
+                    {subServices.map((subService, index) => (
+                    <div key={index} className='cooked-service-subservice'>
+                        <div className='subservice-bonuses'>
+                            {subService.pickedBonuses.map(bonus => (
+                                <span key={bonus.id} className='bonus-tag'>
+                                    {bonus.name}
+                                </span>
+                            ))}
+                        </div>
+                        <div className='subservice-controls'>
+                            <input
+                                type="number"
+                                value={subService.count}
+                                onChange={(e) => onCountChange(
+                                    cookedService, 
+                                    subService, 
+                                    Number(e.target.value)
+                                )}
+                                min="1"
+                            />
+                            <span className='subservice-price'>
+                                {(subService.price * subService.count).toFixed(2)} руб.
+                            </span>
+                        </div>
+                    </div>
+                ))}
                 </div>
             </div>
         </div>

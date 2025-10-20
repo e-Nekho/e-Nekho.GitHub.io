@@ -1,18 +1,18 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useServicePicker } from '../../Hooks/PickServices';
 import CategoriesList from '../CategoriesList/CategoriesList';
 import ServiceField from '../ServiceField/ServiceField';
-import CookedServiceField from '../CookedServiceField/CookedServiceField'
+import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import './Main.css';
 
 
 export default function Main({
     categories=[{id: 0, name: 'Секрет'}],
-    rawServices = {},
-    typesMarmalade = {},
-    typesChocolate = {},
-    bonuses = {},
-    pickedServices = {},
+    rawServices = [],
+    typesMarmalade = [],
+    typesChocolate = [],
+    bonuses = [],
+    servicePicker={},
+    pickedServices = [],
     onAddClick,
     onRemoveClick,
     onSubRemoveClick
@@ -23,15 +23,15 @@ export default function Main({
         PickCategory(prev => prev?.id !== category.id ? category : prev);
     }, []);
 
-    const [pickedType, setPickedType] = useState([]);
+    const [pickedTypes, setPickedTypes] = useState([]);
 
     useEffect(() => {
         if (pickedCategory?.id === 1) {
-            setPickedType(typesMarmalade);
+            setPickedTypes(typesMarmalade);
         } else if (pickedCategory?.id === 2) {
-            setPickedType(typesChocolate);
+            setPickedTypes(typesChocolate);
         } else {
-            setPickedType([]);
+            setPickedTypes([]);
         }
     }, [pickedCategory, typesMarmalade, typesChocolate]);
 
@@ -47,11 +47,12 @@ export default function Main({
             categoryId={pickedCategory?.id}
             categoryName={pickedCategory?.name}
             services={rawServices[pickedCategory?.id] || []}
-            types={pickedType}
+            types={pickedTypes}
             bonuses={pickedCategory?.id !== 0 && pickedCategory?.id !== 1 ? bonuses : []}
             onAddClick={onAddClick} // TODO поменять на ссылку на объект
             />
-            <CookedServiceField
+            <ShoppingCart
+            servicePicker={servicePicker}
             />
             </div>
             <div className="main-right-container">

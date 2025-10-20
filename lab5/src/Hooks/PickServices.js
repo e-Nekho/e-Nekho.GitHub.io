@@ -1,59 +1,112 @@
 import { useState } from "react";
 
-/*
-RawService = {id: number, logo: string-url, name: string, price: number, possibleTypes[]:object[], possibleBonuses[]: object[], discount: number}
-CookedService = {category: {id: number, name: string}, id === raw.id, logo === raw.logo, name === raw.name, pickedType: possibleTypes[id], totalPrice: number, discount === raw.discount, subServices[]: object[]}
-subService = {pickedBonuses[]: possibleBonuses[startId : endId], count: number, price: number}
-*/
-
 export const useServicePicker = () => {
     const [picked, setPicked] = useState([]);
 
+    // Расчет цены с учетом бонусов и скидки
+    const calculatePrice = (basePrice, bonuses, discount) => {
+        // Суммируем бонусы (value в процентах)
+        const bonusMultiplier = bonuses.reduce((total, bonus) => total + (bonus.value / 100), 0);
+        const priceWithBonuses = basePrice * (1 + bonusMultiplier);
+        
+        // Применяем скидку
+        return priceWithBonuses * (1 - discount / 100);
+    };
+
     // Поиск основного сервиса
-    const findMainService = (services, service) => {
+    const findMainService = (services, preCookedService) => {
         return services.findIndex(item =>
-            item.category.id === service.category.id &&
-            item.id === service.id &&
-            item.pickedType.id === service.pickedType.id
+            item.category.id === preCookedService.category.id &&
+            item.id === preCookedService.id &&
+            item.type.id === preCookedService.type.id
         );
     };
 
-    // Поиск суб-сервиса в основном сервисе
-    const findSubService = (subServices, subService) => {
+    // Поиск суб-сервиса по бонусам
+    const findSubService = (subServices, pickedBonuses) => {
         return subServices.findIndex(item =>
-            JSON.stringify(item.pickedBonuses) === JSON.stringify(subService.pickedBonuses)
+            item.pickedBonuses.length === pickedBonuses.length &&
+            item.pickedBonuses.every(bonus => 
+                pickedBonuses.some(pb => pb.id === bonus.id)
+            )
         );
     };
 
-    // Добавление сервиса
-    const addService = (service) => {
+    // Создание cookedService из preCookedService
+    const createCookedService = (preCookedService, count) => {
+        const pricePerUnit = calculatePrice(
+            preCookedService.rawPrice, 
+            preCookedService.pickedBonuses, 
+            preCookedService.discount
+        );
+        
+        const subService = {
+            pickedBonuses: [...preCookedService.pickedBonuses],
+            count: count,
+            price: pricePerUnit
+        };
+
+        const rawTotalPrice = preCookedService.rawPrice * count;
+        const totalPrice = pricePerUnit * count;
+
+        return {
+            category: { ...preCookedService.category },
+            id: preCookedService.id,
+            logo: preCookedService.logo,
+            name: preCookedService.name,
+            type: { ...preCookedService.type },
+            rawPrice: preCookedService.rawPrice,
+            rawTotalPrice: rawTotalPrice,
+            totalPrice: totalPrice,
+            discount: preCookedService.discount,
+            subServices: [subService]
+        };
+    };
+
+    // Добавление сервиса из preCookedService
+    const addService = (preCookedService, count) => {
+        if (count <= 0) return;
+
         setPicked(prev => {
             const updated = [...prev];
-            const mainIndex = findMainService(updated, service);
+            const mainIndex = findMainService(updated, preCookedService);
 
             if (mainIndex !== -1) {
-                // Основной сервис существует, работаем с суб-сервисами
+                // Основной сервис существует
                 const mainService = updated[mainIndex];
-                const subServiceToAdd = service.subServices[0]; // Берем первый суб-сервис из добавляемого
-                
-                const subIndex = findSubService(mainService.subServices, subServiceToAdd);
+                const subIndex = findSubService(mainService.subServices, preCookedService.pickedBonuses);
+
+                const pricePerUnit = calculatePrice(
+                    preCookedService.rawPrice,
+                    preCookedService.pickedBonuses,
+                    preCookedService.discount
+                );
 
                 if (subIndex !== -1) {
                     // Суб-сервис существует, увеличиваем количество
-                    mainService.subServices[subIndex].count += subServiceToAdd.count;
+                    mainService.subServices[subIndex].count += count;
                 } else {
                     // Суб-сервис не существует, добавляем новый
-                    mainService.subServices.push(subServiceToAdd);
+                    mainService.subServices.push({
+                        pickedBonuses: [...preCookedService.pickedBonuses],
+                        count: count,
+                        price: pricePerUnit
+                    });
                 }
 
-                // Пересчитываем общую цену основного сервиса
+                // Пересчитываем общие цены
+                mainService.rawTotalPrice = mainService.subServices.reduce(
+                    (total, sub) => total + (preCookedService.rawPrice * sub.count), 
+                    0
+                );
                 mainService.totalPrice = mainService.subServices.reduce(
                     (total, sub) => total + (sub.price * sub.count), 
                     0
                 );
             } else {
-                // Основного сервиса не существует, добавляем полностью новый
-                updated.push(service);
+                // Основного сервиса не существует, создаем новый
+                const newCookedService = createCookedService(preCookedService, count);
+                updated.push(newCookedService);
             }
 
             return updated;
@@ -62,18 +115,27 @@ export const useServicePicker = () => {
 
     // Обновление количества суб-сервиса
     const updateSubServiceCount = (mainService, subService, newCount) => {
+        if (newCount <= 0) {
+            removeSubService(mainService, subService);
+            return;
+        }
+
         setPicked(prev => {
             const updated = [...prev];
             const mainIndex = findMainService(updated, mainService);
 
             if (mainIndex !== -1) {
                 const mainServiceObj = updated[mainIndex];
-                const subIndex = findSubService(mainServiceObj.subServices, subService);
+                const subIndex = findSubService(mainServiceObj.subServices, subService.pickedBonuses);
 
                 if (subIndex !== -1) {
                     mainServiceObj.subServices[subIndex].count = newCount;
                     
-                    // Пересчитываем общую цену
+                    // Пересчитываем общие цены
+                    mainServiceObj.rawTotalPrice = mainServiceObj.subServices.reduce(
+                        (total, sub) => total + (mainServiceObj.rawPrice * sub.count), 
+                        0
+                    );
                     mainServiceObj.totalPrice = mainServiceObj.subServices.reduce(
                         (total, sub) => total + (sub.price * sub.count), 
                         0
@@ -90,7 +152,7 @@ export const useServicePicker = () => {
         setPicked(prev => prev.filter(item =>
             !(item.category.id === service.category.id &&
               item.id === service.id &&
-              item.pickedType.id === service.pickedType.id)
+              item.type.id === service.type.id)
         ));
     };
 
@@ -102,7 +164,7 @@ export const useServicePicker = () => {
 
             if (mainIndex !== -1) {
                 const mainServiceObj = updated[mainIndex];
-                const subIndex = findSubService(mainServiceObj.subServices, subService);
+                const subIndex = findSubService(mainServiceObj.subServices, subService.pickedBonuses);
 
                 if (subIndex !== -1) {
                     // Удаляем суб-сервис
@@ -112,7 +174,11 @@ export const useServicePicker = () => {
                     if (mainServiceObj.subServices.length === 0) {
                         updated.splice(mainIndex, 1);
                     } else {
-                        // Пересчитываем общую цену
+                        // Пересчитываем общие цены
+                        mainServiceObj.rawTotalPrice = mainServiceObj.subServices.reduce(
+                            (total, sub) => total + (mainServiceObj.rawPrice * sub.count), 
+                            0
+                        );
                         mainServiceObj.totalPrice = mainServiceObj.subServices.reduce(
                             (total, sub) => total + (sub.price * sub.count), 
                             0
@@ -130,21 +196,6 @@ export const useServicePicker = () => {
         setPicked(prev => prev.filter(service => service.id !== id));
     };
 
-    // Обновление основного сервиса (полная замена)
-    const updateService = (service) => {
-        setPicked(prev => {
-            const updated = [...prev];
-            const existingIndex = findMainService(updated, service);
-
-            if (existingIndex !== -1) {
-                updated[existingIndex] = service;
-                return updated;
-            }
-            
-            return prev;
-        });
-    };
-
     // Полное очищение
     const clearServices = () => {
         setPicked([]);
@@ -155,7 +206,7 @@ export const useServicePicker = () => {
         return picked.find(item =>
             item.category.id === service.category.id &&
             item.id === service.id &&
-            item.pickedType.id === service.pickedType.id
+            item.type.id === service.type.id
         );
     };
 
@@ -164,7 +215,10 @@ export const useServicePicker = () => {
         const main = getService(mainService);
         if (main) {
             return main.subServices.find(item =>
-                JSON.stringify(item.pickedBonuses) === JSON.stringify(subService.pickedBonuses)
+                item.pickedBonuses.length === subService.pickedBonuses.length &&
+                item.pickedBonuses.every(bonus => 
+                    subService.pickedBonuses.some(pb => pb.id === bonus.id)
+                )
             );
         }
         return null;
@@ -182,18 +236,23 @@ export const useServicePicker = () => {
         return picked.reduce((total, service) => total + service.totalPrice, 0);
     };
 
+    // Получение общей стоимости без скидки
+    const getRawTotalPrice = () => {
+        return picked.reduce((total, service) => total + service.rawTotalPrice, 0);
+    };
+
     return {
-        picked,                   // текущий массив CookedService
-        addService,               // добавление сервиса
-        removeService,            // удаление основного сервиса по category, id, type
-        removeSubService,         // удаление суб-сервиса по bonuses
+        picked,                   // массив cookedService
+        addService,               // добавление из preCookedService с количеством
+        removeService,            // удаление основного сервиса
+        removeSubService,         // удаление суб-сервиса
         removeServiceById,        // удаление по ID основного сервиса
-        updateService,            // обновление основного сервиса
         updateSubServiceCount,    // обновление количества суб-сервиса
         clearServices,            // очищение всего списка
         getService,               // получение основного сервиса
         getSubService,            // получение суб-сервиса
         getTotalCount,            // общее количество всех услуг
-        getTotalPrice             // общая стоимость
+        getTotalPrice,            // общая стоимость со скидкой
+        getRawTotalPrice          // общая стоимость без скидки
     };
 };

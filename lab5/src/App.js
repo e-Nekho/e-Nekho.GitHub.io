@@ -13,15 +13,15 @@ function App() {
     {id: 3, name: "Фрукты"   }
   ];
   const typesMarmalade =[
-    { id: 1, type: 'Яблоко'},
-    { id: 2, type: 'Вишня'},
-    { id: 3, type: 'Малина'},
-    { id: 4, type: 'Апельсин'}
+    { id: 1, name: 'Яблоко'},
+    { id: 2, name: 'Вишня'},
+    { id: 3, name: 'Малина'},
+    { id: 4, name: 'Апельсин'}
   ];
   const typesChocolate = [
-    { id: 1, type: 'Молочный'},
-    { id: 2, type: 'Горький'},
-    { id: 3, type: 'Белый'}
+    { id: 1, name: 'Молочный'},
+    { id: 2, name: 'Горький'},
+    { id: 3, name: 'Белый'}
   ];
   const bonus = [
     {id: 1, name: 'Упаковка',   value: 5  },
@@ -63,14 +63,29 @@ function App() {
     removeService,
     removeSubService,
     removeServiceById,
-    updateService,
     updateSubServiceCount,
     clearServices,
     getService,
     getSubService,
     getTotalCount,
-    getTotalPrice
+    getTotalPrice,
+    getRawTotalPrice
   } = useServicePicker();
+
+  const servicePicker = {
+    picked,
+    addService,
+    removeService,
+    removeSubService,
+    removeServiceById,
+    updateSubServiceCount,
+    clearServices,
+    getService,
+    getSubService,
+    getTotalCount,
+    getTotalPrice,
+    getRawTotalPrice
+  }
 
   return (
     <div className="App">
@@ -81,6 +96,7 @@ function App() {
       typesMarmalade={typesMarmalade}
       typesChocolate={typesChocolate}
       bonuses={bonus}
+      servicePicker={servicePicker}
       pickedServices={picked}
       onAddClick={addService}
       onRemoveClick={removeService}
