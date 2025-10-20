@@ -1,10 +1,22 @@
 import { useState, useEffect, useCallback } from 'react';
+import { useServicePicker } from '../../Hooks/PickServices';
 import CategoriesList from '../CategoriesList/CategoriesList';
-import ServicesField from '../ServicesField/ServicesField';
+import ServiceField from '../ServiceField/ServiceField';
+import CookedServiceField from '../CookedServiceField/CookedServiceField'
 import './Main.css';
 
 
-export default function Main({categories=[{id: 0, name: 'Секрет'}], rawServices = {}, typesMarmalade = {}, typesChocolate = {}, bonuses = {}, pickedServices = {}, total = {}}) {
+export default function Main({
+    categories=[{id: 0, name: 'Секрет'}],
+    rawServices = {},
+    typesMarmalade = {},
+    typesChocolate = {},
+    bonuses = {},
+    pickedServices = {},
+    onAddClick,
+    onRemoveClick,
+    onSubRemoveClick
+}) {
     const [pickedCategory, PickCategory] = useState(categories[0]);
 
     const onCategoryPicked = useCallback((category) => {
@@ -29,14 +41,17 @@ export default function Main({categories=[{id: 0, name: 'Секрет'}], rawSer
             <CategoriesList
             categories={categories}
             onCategoryPicked={onCategoryPicked}
-            selectedCategoryId={pickedCategory?.id}/>
-            <ServicesField
+            selectedCategoryId={pickedCategory?.id}
+            />
+            <ServiceField
             categoryId={pickedCategory?.id}
             categoryName={pickedCategory?.name}
             services={rawServices[pickedCategory?.id] || []}
             types={pickedType}
             bonuses={pickedCategory?.id !== 0 && pickedCategory?.id !== 1 ? bonuses : []}
-            onAddClick={pickedServices.addService}
+            onAddClick={onAddClick} // TODO поменять на ссылку на объект
+            />
+            <CookedServiceField
             />
             </div>
             <div className="main-right-container">

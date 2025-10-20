@@ -3,7 +3,17 @@ import { usePriceType } from '../../Hooks/Settings'
 import { CalculateProduct } from '../../Hooks/Calculate';
 import './Service.css'
 
-export default function Service({logo='', name='null', price=0, types={}, bonuses={}, discount=0, onAddClick}) {
+export default function Service({
+    pickedService={},
+    id=-1,
+    logo='',
+    name='null',
+    price=0,
+    types={},
+    bonuses={},
+    discount=0,
+    onAddClick
+}) {
     const [pickedType, setPickedType] = useState(0);
     
     const pickType = (event) => {
@@ -40,7 +50,8 @@ export default function Service({logo='', name='null', price=0, types={}, bonuse
     const {symbol, coefficient, format} = usePriceType();
 
     const priceExpression = () => {
-        const newPrice = CalculateProduct(price, 1, discount).total;
+        if (discount === 0) return price;
+        const newPrice = (CalculateProduct(price, 1, discount).total.toFixed(1) - 0.01).toFixed(2);
         if (format === "rub")
             return (newPrice * coefficient) + symbol;
         else
@@ -58,7 +69,7 @@ export default function Service({logo='', name='null', price=0, types={}, bonuse
                             // Fallback при ошибке загрузки
                             e.target.style.display = 'none';
                         }}
-                        height={100} // TODO Изменить при необходимости
+                    height={100} // TODO Изменить при необходимости
                     />
                     
                 )}
@@ -114,7 +125,7 @@ export default function Service({logo='', name='null', price=0, types={}, bonuse
             )}
             <div className="service-confirmation">
                 <div className="service-count-input">
-                    Количество:
+                    <label className='service-count-input-label'>Количество:</label>
                     <input
                         type="number"
                         value={count}
@@ -125,7 +136,16 @@ export default function Service({logo='', name='null', price=0, types={}, bonuse
                     <input
                         type="button"
                         value="Add"
-                        onClick={() => onAddClick({logo, name, price, pickedType, pickedBonuses, count})}
+                        onClick={() => {
+                            const cookedService = {
+                                category: pickedCategory,
+                                id: id,
+                                logo: logo,
+                                name: name,
+                                pickedType: pickedType,
+                                totalprice: 
+                            }
+                            onAddClick()}}
                     />
                 </div>
             </div>
