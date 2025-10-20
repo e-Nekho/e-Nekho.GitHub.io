@@ -18,4 +18,3 @@ export const CalculateProduct = (price, quantity, discount) => {
         total
     };
 };
-

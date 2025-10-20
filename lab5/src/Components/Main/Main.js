@@ -26,13 +26,16 @@ export default function Main({categories=[{id: 0, name: 'Секрет'}], rawSer
     return (
         <div className="Main">
             <div className="main-left-container">
-            <CategoriesList categories={categories} onCategoryPicked={onCategoryPicked}/>
+            <CategoriesList
+            categories={categories}
+            onCategoryPicked={onCategoryPicked}
+            selectedCategoryId={pickedCategory?.id}/>
             <ServicesField
             categoryId={pickedCategory?.id}
             categoryName={pickedCategory?.name}
             services={rawServices[pickedCategory?.id] || []}
-            type={pickedType}
-            bonus={pickedCategory?.id !== 0 && pickedCategory?.id !== 1 ? bonuses : []}
+            types={pickedType}
+            bonuses={pickedCategory?.id !== 0 && pickedCategory?.id !== 1 ? bonuses : []}
             onAddClick={pickedServices.addService}
             />
             </div>

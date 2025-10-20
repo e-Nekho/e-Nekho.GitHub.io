@@ -1,5 +1,5 @@
 import {useState, useMemo, useEffect} from 'react'
-import PickedServices from './Hooks/PickedServices/PickedServices';
+import PickedServices from './Hooks/PickedServices';
 import Header from './Components/Header/Header'
 import Main from './Components/Main/Main';
 import './App.css';
@@ -12,34 +12,42 @@ function App() {
     {id: 3, name: "Фрукты"   }
   ];
   const typesMarmalade =[
-    'Яблоко',
-    'Вишня',
-    'Малина',
-    'Апельсин'
+    { id: 1, type: 'Яблоко'},
+    { id: 2, type: 'Вишня'},
+    { id: 3, type: 'Малина'},
+    { id: 4, type: 'Апельсин'}
   ];
   const typesChocolate = [
-    'Молочный',
-    'Горький',
-    'Белый'
+    { id: 1, type: 'Молочный'},
+    { id: 2, type: 'Горький'},
+    { id: 3, type: 'Белый'}
   ];
   const bonus = [
-    {id: 1, name: 'Упаковка',   percentage: 5  },
-    {id: 2, name: 'Доставка',   percentage: 10 },
-    {id: 3, name: 'Приоритет',  percentage: 3  } 
+    {id: 1, name: 'Упаковка',   value: 5  },
+    {id: 2, name: 'Доставка',   value: 10 },
+    {id: 3, name: 'Приоритет',  value: 3  } 
   ];
   
   const strange = [
-    {id: 1, logo: '', name: 'Случайный бокс №1', price: 50, discount: 0, count: 0}
+    {id: 1, logo: '', name: 'Случайный бокс №1', price: 50, discount: 0, count: 0},
+    {id: 2, logo: '', name: 'Случайный бокс №2', price: 500, discount: 0, count: 0},
+    {id: 3, logo: '', name: 'Случайный бокс №3', price: 5000, discount: 0, count: 0}
   ];
   const marmalade = [
-    { id: 1, logo: './images/marmalade-strips.jpg',   name: 'Ленточки кислые',      price: 100,   discount: 0,  count: 0 },
-    { id: 2, logo: './images/gummy-bears.avif',       name: 'мармеладные мишки',    price: 50,    discount: 5,  count: 0 },
-    { id: 3, logo: './images/marmalade-peppers.png',  name: 'перчики острые',       price: 125,   discount: 0,  count: 0 },
-    { id: 4, logo: './images/marmalade-worms.jpg',    name: 'мармеладные червячки', price: 110,   discount: 15, count: 0 },
-    { id: 5, logo: './images/valera-the-bear.jpg',    name: 'Медведь Валера',       price: 1000,  discount: 50, count: 0 }
+    { id: 1, logo: process.env.PUBLIC_URL + '/images/marmalade-strips.jpg',   name: 'Ленточки кислые',      price: 100,   discount: 0,  count: 0 },
+    { id: 2, logo: process.env.PUBLIC_URL + '/images/gummy-bears.avif',       name: 'мармеладные мишки',    price: 50,    discount: 5,  count: 0 },
+    { id: 3, logo: process.env.PUBLIC_URL + '/images/marmalade-peppers.png',  name: 'перчики острые',       price: 125,   discount: 0,  count: 0 },
+    { id: 4, logo: process.env.PUBLIC_URL + '/images/marmalade-worms.jpg',    name: 'мармеладные червячки', price: 110,   discount: 15, count: 0 },
+    { id: 5, logo: process.env.PUBLIC_URL + '/images/valera-the-bear.jpg',    name: 'Медведь Валера',       price: 1000,  discount: 50, count: 0 }
   ];
   const chocolate = [
-
+    { id: 1, logo: '', name: 'Классический',  price: 100, discount: 0,  count: 0},
+    { id: 2, logo: '', name: 'Воздушный',     price: 120, discount: 0,  count: 0},
+    { id: 3, logo: '', name: 'Карамель',      price: 115, discount: 45,  count: 0},
+    { id: 4, logo: '', name: 'Клубника',      price: 115, discount: 10, count: 0},
+    { id: 5, logo: '', name: 'Арахис',        price: 115, discount: 0,  count: 0},
+    { id: 6, logo: '', name: 'Фундук',        price: 115, discount: 15, count: 0},
+    { id: 7, logo: '', name: 'Арбуз',         price: 170, discount: 0,  count: 0},
   ];
   const fruits = [
 

@@ -1,5 +1,4 @@
 import Service from '../Service/Service'
-import PickedService from '../../Hooks/PickedServices/PickedServices';
 
 export default function ServiceField({categoryId, categoryName, services={}, types={}, bonuses={}, onAddClick}) {
     return (
@@ -15,7 +14,7 @@ export default function ServiceField({categoryId, categoryName, services={}, typ
                     bonuses={bonuses}
                     discount={service.discount}
                     onAddClick={onAddClick}
-                    /> // TODO добавить остальные параметры и реализовать их
+                    /> 
                 </li>
             ))}
         </div>
