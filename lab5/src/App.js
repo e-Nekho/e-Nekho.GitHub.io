@@ -6,7 +6,7 @@ import './App.css';
 
 function App() {
   const category = [
-    {id: 0, name: 'Секрет'   },
+    {id: 0, name: 'Сюрприз'   },
     {id: 1, name: 'Мармелад' },
     {id: 2, name: 'Шоколад'  },
     {id: 3, name: "Фрукты"   }

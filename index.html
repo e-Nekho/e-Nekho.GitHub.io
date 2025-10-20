@@ -49,7 +49,8 @@
         <li><a href="lab1/Folder/project/index.html">🔬 Лабораторная работа 1 (HTML/CSS)</a></li>
         <li><a href="lab2/Folder/project/index.html">🔬 Лабораторная работа 2 (HTML/CSS)</a></li>
         <li><a href="lab3/Folder/project/index.html">🔬 Лабораторная работа 3 (HTML/CSS)</a></li>
-        <li><a href="#" onclick="redirectToReact()">⚛️ Лабораторная работа 4 (React)</a></li>
+        <li><a href="#" onclick="redirectToReact('lab4/lab4.html')">⚛️ Лабораторная работа 4 (React)</a></li>
+        <li><a href="#" onclick="redirectToReact('lab5/lab5.html')">⚛️ Лабораторные работы 5, 6 (React)></a></li>
     </ul>
 
     <footer>
@@ -57,12 +58,12 @@
     </footer>
 
     <script>
-        function redirectToReact() {
+        function redirectToReact(ref) {
             // Сохраняем текущий путь для возможного возврата
             sessionStorage.setItem('returnPath', window.location.pathname);
             
             // Редирект на React приложение
-            window.location.href = 'lab4/lab4.html';
+            window.location.href = ref;
             
             // Альтернативный вариант - открыть в новой вкладке:
             // window.open('lab4/public/index.html', '_blank');
