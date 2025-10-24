@@ -14,7 +14,14 @@ export default function Service({
     discount=0,
     onAddClick
 }) {
-    const [pickedType, setPickedType] = useState(types[0] || {});
+    const [pickedType, setPickedType] = useState(() => {
+        if (types.length > 0) {
+            return types[0];
+        } else {
+            return {id: -1, name: ''};
+        }
+    });  
+
     const [bonusesStatus, setBonusesStatus] = useState([]);
     const [count, setCount] = useState(1);
     const {symbol, coefficient, format} = usePriceType();

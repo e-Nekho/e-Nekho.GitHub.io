@@ -3,6 +3,7 @@ import CategoriesList from '../CategoriesList/CategoriesList';
 import ServiceField from '../ServiceField/ServiceField';
 import ShoppingCart from '../ShoppingCart/ShoppingCart';
 import './Main.css';
+import '../../Adaptive.css';
 
 
 export default function Main({
@@ -44,19 +45,20 @@ export default function Main({
             selectedCategoryId={pickedCategory?.id}
             />
             <ServiceField
+            key={`${pickedCategory?.name}-${pickedCategory?.id}`}
             categoryId={pickedCategory?.id}
             categoryName={pickedCategory?.name}
             services={rawServices[pickedCategory?.id] || []}
-            types={pickedTypes}
+            types={pickedTypes || []}
             bonuses={pickedCategory?.id !== 0 && pickedCategory?.id !== 1 ? bonuses : []}
             onAddClick={onAddClick} // TODO поменять на ссылку на объект
             />
-            <ShoppingCart
-            servicePicker={servicePicker}
-            />
+            
             </div>
             <div className="main-right-container">
-
+            <ShoppingCart
+                        servicePicker={servicePicker}
+                        />
             </div>
         </div>
     );

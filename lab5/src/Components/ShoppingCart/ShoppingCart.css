@@ -1,0 +1,252 @@
+.cart {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 20px;
+  padding: 12px;
+  overflow: hidden;
+  position: relative;
+}
+
+.cart-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.cart-empty {
+  text-align: center;
+  color: rgba(0,0,0,0.5);
+}
+
+.cart-item-group {
+  margin-bottom: 12px;
+  border-radius: 12px;
+  background: rgba(255,255,255,0.4);
+  backdrop-filter: blur(14px);
+  position: relative;
+  transition: 0.3s;
+}
+
+.cart-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.expand-toggle {
+  font-size: 1.2rem;
+  margin-right: 10px;
+  color: #4c6fd0;
+  transition: transform 0.2s;
+}
+.expand-toggle.open {
+  transform: rotate(180deg);
+}
+
+.cart-subservices {
+  padding: 10px;
+  border-top: 1px solid rgba(255,255,255,0.4);
+  animation: fadeIn 0.2s ease;
+}
+.subservice-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6px 0;
+}
+.subservice-left ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.subservice-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.subservice-right input {
+  width: 50px;
+  border: none;
+  border-radius: 6px;
+  padding: 4px;
+  text-align: center;
+  background: rgba(255,255,255,0.7);
+}
+.remove-sub {
+  background: rgba(255,100,100,0.4);
+  border: none;
+  border-radius: 6px;
+  color: white;
+  font-weight: bold;
+  padding: 2px 6px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.remove-sub:hover {
+  background: rgba(255,60,60,0.7);
+}
+
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.cart-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.cart-buttons button {
+  border: none;
+  padding: 8px 16px;
+  border-radius: 10px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-buy {
+  background: linear-gradient(135deg, #85baff, #589eff);
+  color: white;
+}
+.btn-buy:hover {
+  background: linear-gradient(135deg, #9bd0ff, #71b0ff);
+}
+.btn-clear {
+  background: rgba(255,255,255,0.4);
+}
+.btn-clear:hover {
+  background: rgba(255,255,255,0.6);
+}
+
+/* ====== ОСНОВНАЯ КОРЗИНА ====== */
+.cart {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  border-radius: 20px;
+  padding: 12px;
+  overflow: hidden;
+  position: relative;
+  background: rgba(255, 255, 255, 0.35);
+  backdrop-filter: blur(18px);
+}
+
+/* ====== СПИСОК ТОВАРОВ ====== */
+.cart-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 0 8px 120px; /* ✅ Добавили нижний отступ под футер */
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  scrollbar-width: thin;
+}
+
+.cart-item-group {
+  margin-bottom: 12px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(14px);
+  padding: 10px;
+  transition: 0.25s;
+  box-shadow: inset 0 0 6px rgba(255, 255, 255, 0.25);
+}
+
+.cart-item-group:hover {
+  background: rgba(255, 255, 255, 0.6);
+}
+
+/* ====== РАЗДЕЛИТЕЛЬ ПЕРЕД ФУТЕРОМ ====== */
+.cart-list::after {
+  content: '';
+  display: block;
+  height: 1px;
+  width: 100%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(100, 150, 255, 0.5),
+    transparent
+  );
+  margin-top: 14px;
+}
+
+/* ====== ФУТЕР (ИТОГО) ====== */
+.cart-footer {
+  position: sticky; /* ✅ вместо absolute */
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 14px 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(12px);
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  box-shadow: 0 -2px 12px rgba(120, 170, 255, 0.15);
+  z-index: 5;
+}
+
+/* ====== СОДЕРЖИМОЕ ФУТЕРА ====== */
+.cart-total {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #1b355a;
+}
+
+.cart-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  width: 90%;
+}
+
+.cart-buttons button {
+  flex: 1;
+  border: none;
+  border-radius: 12px;
+  padding: 8px 0;
+  font-weight: 600;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: 0.3s;
+  color: white;
+}
+
+.btn-buy {
+  background: linear-gradient(135deg, #85baff, #589eff);
+}
+.btn-buy:hover {
+  background: linear-gradient(135deg, #9bd0ff, #71b0ff);
+}
+.btn-clear {
+  background: rgba(255, 255, 255, 0.5);
+  color: #1b355a;
+}
+.btn-clear:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+/* ====== ДЛЯ МОБИЛЬНЫХ (адаптив) ====== */
+@media (max-width: 768px) {
+  .cart-list {
+    padding-bottom: 140px; /* чуть больше отступ под увеличенный футер */
+  }
+
+  .cart-footer {
+    border-radius: 18px 18px 0 0;
+    padding: 16px;
+  }
+}

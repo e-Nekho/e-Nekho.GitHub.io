@@ -1,0 +1,81 @@
+/* === АДАПТИВНАЯ ВЁРСТКА === */
+@media (max-width: 992px) {
+  .Main {
+    flex-direction: column;
+    height: auto;
+    padding: 0 20px;
+  }
+
+  .main-left-container,
+  .main-right-container {
+    flex: none;
+    width: 100%;
+    height: auto;
+  }
+
+  .main-left-container > .ServiceField {
+    max-height: 60vh;
+  }
+
+  .cart {
+    max-height: 70vh;
+  }
+}
+
+/* === ДЛЯ МОБИЛЬНЫХ === */
+@media (max-width: 768px) {
+  .Header-container {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+
+  .Header-actions {
+    display: none;
+  }
+
+  .Main {
+    padding: 0 12px;
+  }
+
+  .Service {
+    grid-template-columns: 70px 1fr;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .service-logo img {
+    width: 70px;
+    height: 70px;
+  }
+
+  .cart {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    max-height: 55vh;
+    border-radius: 18px 18px 0 0;
+    box-shadow: 0 -4px 18px rgba(0,0,0,0.2);
+    transform: translateY(85%);
+    transition: transform 0.4s ease;
+  }
+
+  .cart.open {
+    transform: translateY(0);
+  }
+
+  .cart-header {
+    cursor: pointer;
+    background: rgba(255,255,255,0.3);
+    border-radius: 18px 18px 0 0;
+    padding: 10px;
+    justify-content: center;
+  }
+
+  .cart-footer {
+    position: relative;
+    padding-bottom: 10px;
+  }
+}

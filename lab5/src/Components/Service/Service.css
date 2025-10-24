@@ -1,3 +1,63 @@
-.service-price-default {
-    text-decoration: line-through;
+.Service {
+  display: grid;
+  grid-template-columns: 100px 1fr auto;
+  align-items: center;
+  gap: 16px;
+  padding: 14px;
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.45);
+  backdrop-filter: blur(16px);
+  transition: 0.3s;
+}
+.Service:hover {
+  box-shadow: 0 4px 16px rgba(120, 170, 255, 0.25);
+}
+.service-logo img {
+  width: 100px;
+  height: 100px;
+  border-radius: 12px;
+  object-fit: cover;
+}
+
+.service-container-small {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.service-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1a355c;
+}
+
+.service-container-price {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.service-addings {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.service-type select,
+.service-bonus-list input[type="checkbox"] {
+  cursor: pointer;
+}
+
+.service-addButton input {
+  margin-top: 8px;
+  background: linear-gradient(135deg, #8abfff, #5f9fff);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 14px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.service-addButton input:hover {
+  background: linear-gradient(135deg, #a8d4ff, #78b4ff);
 }

@@ -8,7 +8,8 @@ export default function ServiceField({categoryId, categoryName, services={}, typ
             {services?.map(service => (
                 <li key={service.id} className="service-field-item">
                     <Service
-                    category={categoryId}
+                    key={`${service.id}-${service.name}`}
+                    category={{id: categoryId, name: categoryName}}
                     id={service.id}
                     logo={service.logo}
                     name={service.name}

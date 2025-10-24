@@ -1,0 +1,156 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+.CookedService {
+  display: flex;
+  flex-direction: column;
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  padding: 14px;
+  margin-bottom: 12px;
+  transition: all 0.25s ease;
+  font-family: 'Poppins', sans-serif;
+}
+
+.CookedService:hover {
+  box-shadow: 0 4px 16px rgba(120, 170, 255, 0.25);
+  transform: translateY(-2px);
+}
+
+/* ======= HEADER ======= */
+.cooked-service-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.cooked-service-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cooked-service-name {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #1b355a;
+}
+
+.cooked-service-type {
+  font-size: 0.8rem;
+  color: #517cbf;
+}
+
+.cooked-service-summary {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.cooked-service-total {
+  font-weight: 600;
+  font-size: 1rem;
+  color: #2b4c8a;
+}
+
+.cooked-service-count {
+  font-size: 0.85rem;
+  color: rgba(0, 0, 0, 0.6);
+}
+
+.cooked-service-remove button {
+  border: none;
+  background: rgba(255, 100, 100, 0.4);
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.cooked-service-remove button:hover {
+  background: rgba(255, 80, 80, 0.7);
+}
+
+/* ======= BODY ======= */
+.cooked-service-body {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding-top: 10px;
+}
+
+.cooked-service-logo img {
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  object-fit: cover;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.cooked-service-subservices {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* ======= SUBSERVICE ======= */
+.subservice-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(255, 255, 255, 0.35);
+  border-radius: 12px;
+  padding: 8px 10px;
+  transition: 0.2s;
+}
+.subservice-row:hover {
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.subservice-bonuses {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+}
+.bonus-tag {
+  background: rgba(120, 170, 255, 0.3);
+  color: #1b355a;
+  padding: 2px 6px;
+  border-radius: 8px;
+  font-size: 0.8rem;
+}
+.no-bonuses {
+  font-size: 0.8rem;
+  color: rgba(0, 0, 0, 0.5);
+}
+
+.subservice-controls {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.subservice-controls input {
+  width: 50px;
+  border: none;
+  border-radius: 8px;
+  padding: 4px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.7);
+  font-family: 'Poppins', sans-serif;
+  transition: 0.25s;
+}
+.subservice-controls input:focus {
+  box-shadow: 0 0 0 2px rgba(120, 170, 255, 0.4);
+}
+.subservice-price {
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #24446e;
+}

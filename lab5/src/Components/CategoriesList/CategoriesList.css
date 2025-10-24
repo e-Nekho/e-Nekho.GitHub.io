@@ -1,0 +1,27 @@
+.CategoriesList {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.25);
+  backdrop-filter: blur(10px);
+  box-shadow: inset 0 0 8px rgba(255,255,255,0.3);
+}
+
+.category-list-item label {
+  padding: 6px 14px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.45);
+  cursor: pointer;
+  transition: 0.3s;
+}
+.category-list-item input {
+  display: none;
+}
+.category-list-item input:checked + label {
+  background: rgba(120, 170, 255, 0.6);
+  color: white;
+  box-shadow: 0 0 10px rgba(120, 170, 255, 0.6);
+}

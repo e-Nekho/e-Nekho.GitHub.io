@@ -68,45 +68,40 @@ export const useServicePicker = () => {
         if (count <= 0) return;
 
         setPicked(prev => {
-            const updated = [...prev];
+            const updated = structuredClone(prev);
             const mainIndex = findMainService(updated, preCookedService);
 
             if (mainIndex !== -1) {
-                // Основной сервис существует
                 const mainService = updated[mainIndex];
                 const subIndex = findSubService(mainService.subServices, preCookedService.pickedBonuses);
 
-                const pricePerUnit = calculatePrice(
+                if (subIndex !== -1) {
+                mainService.subServices[subIndex].count = 
+                    mainService.subServices[subIndex].count + count;
+                } else {
+                mainService.subServices.push({
+                    pickedBonuses: [...preCookedService.pickedBonuses],
+                    count: count,
+                    price: calculatePrice(
                     preCookedService.rawPrice,
                     preCookedService.pickedBonuses,
                     preCookedService.discount
-                );
-
-                if (subIndex !== -1) {
-                    // Суб-сервис существует, увеличиваем количество
-                    mainService.subServices[subIndex].count += count;
-                } else {
-                    // Суб-сервис не существует, добавляем новый
-                    mainService.subServices.push({
-                        pickedBonuses: [...preCookedService.pickedBonuses],
-                        count: count,
-                        price: pricePerUnit
-                    });
+                    )
+                });
                 }
 
-                // Пересчитываем общие цены
+                // пересчитать total
                 mainService.rawTotalPrice = mainService.subServices.reduce(
-                    (total, sub) => total + (preCookedService.rawPrice * sub.count), 
-                    0
+                (sum, sub) => sum + (preCookedService.rawPrice * sub.count),
+                0
                 );
                 mainService.totalPrice = mainService.subServices.reduce(
-                    (total, sub) => total + (sub.price * sub.count), 
-                    0
+                (sum, sub) => sum + (sub.price * sub.count),
+                0
                 );
+
             } else {
-                // Основного сервиса не существует, создаем новый
-                const newCookedService = createCookedService(preCookedService, count);
-                updated.push(newCookedService);
+                updated.push(createCookedService(preCookedService, count));
             }
 
             return updated;
