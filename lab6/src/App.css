@@ -1,0 +1,234 @@
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', 'Times New Roman', serif;
+    background: linear-gradient(135deg, #f5f7fa 0%, #e4efe9 100%);
+    min-height: 100vh;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: 
+        radial-gradient(circle at 10% 20%, rgba(255,255,255,0.1) 0%, transparent 20%),
+        radial-gradient(circle at 90% 80%, rgba(255,255,255,0.1) 0%, transparent 20%);
+    z-index: -1;
+}
+
+.App {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Хедер */
+.nature-header {
+    background: linear-gradient(90deg, #2d5016 0%, #4a7c3a 50%, #6ba84f 100%);
+    color: white;
+    padding: 2.5rem 2rem;
+    text-align: center;
+    box-shadow: 0 4px 20px rgba(45, 80, 22, 0.3);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+}
+
+.nature-header::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #8bc34a, #4caf50, #2e7d32);
+}
+
+.nature-header h1 {
+    font-size: 3.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    animation: fadeInDown 1s ease;
+}
+
+.subtitle {
+    font-size: 1.3rem;
+    opacity: 0.9;
+    font-style: italic;
+    letter-spacing: 0.5px;
+    animation: fadeInUp 1s ease 0.3s both;
+}
+
+/* Основной контент */
+.main-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 3rem 2rem;
+    position: relative;
+}
+
+.carousel-container {
+    width: 100%;
+    max-width: 1200px;
+    padding: 0 80px; /* Место для стрелок */
+    position: relative;
+    z-index: 1;
+}
+
+/* Карусель */
+.nature-carousel-wrapper {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(10px);
+    border-radius: 24px;
+    padding: 30px;
+    box-shadow: 
+        0 20px 40px rgba(45, 80, 22, 0.15),
+        0 8px 16px rgba(0, 0, 0, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.5);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    position: relative;
+}
+
+.nature-carousel-wrapper::before {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    background: linear-gradient(45deg, #2d5016, #4a7c3a, #6ba84f, #8bc34a);
+    border-radius: 26px;
+    z-index: -1;
+    opacity: 0.3;
+}
+
+/* Цитата */
+.nature-quote {
+    max-width: 800px;
+    margin-top: 4rem;
+    text-align: center;
+    padding: 2rem;
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(5px);
+    border-radius: 16px;
+    border-left: 5px solid #4a7c3a;
+    animation: fadeIn 1.5s ease 1s both;
+}
+
+.nature-quote blockquote {
+    font-size: 1.5rem;
+    font-style: italic;
+    color: #2d5016;
+    line-height: 1.6;
+    position: relative;
+}
+
+.nature-quote footer {
+    margin-top: 1rem;
+    font-size: 1.1rem;
+    color: #666;
+    font-weight: 600;
+}
+
+/* Футер */
+.nature-footer {
+    background: linear-gradient(90deg, #2d5016 0%, #3a6428 100%);
+    color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 0.95rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Анимации */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Адаптивность */
+@media (max-width: 1200px) {
+    .carousel-container {
+        padding: 0 60px;
+    }
+    
+    .nature-header h1 {
+        font-size: 2.8rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .carousel-container {
+        padding: 0 40px;
+    }
+    
+    .nature-header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .nature-quote blockquote {
+        font-size: 1.2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .carousel-container {
+        padding: 0 20px;
+    }
+    
+    .nature-carousel-wrapper {
+        padding: 20px;
+    }
+    
+    .nature-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .main-content {
+        padding: 2rem 1rem;
+    }
+}
