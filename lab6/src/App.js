@@ -4,14 +4,14 @@ import './App.css';
 
 function App() {
   const images = [
-    {url: '/images/nature1.jpg'},
-    {url: '/images/nature2.jpg'},
-    {url: '/images/nature3.jpg'},
-    {url: '/images/nature4.jpg'},
-    {url: '/images/nature5.jpg'},
-    {url: '/images/nature6.jpg'},
-    {url: '/images/nature7.jpg'},
-    {url: '/images/nature8.jpg'}
+    {url: process.env.PUBLIC_URL + '/images/nature1.jpg'},
+    {url: process.env.PUBLIC_URL + '/images/nature2.jpg'},
+    {url: process.env.PUBLIC_URL + '/images/nature3.jpg'},
+    {url: process.env.PUBLIC_URL + '/images/nature4.jpg'},
+    {url: process.env.PUBLIC_URL + '/images/nature5.jpg'},
+    {url: process.env.PUBLIC_URL + '/images/nature6.jpg'},
+    {url: process.env.PUBLIC_URL + '/images/nature7.jpg'},
+    {url: process.env.PUBLIC_URL + '/images/nature8.jpg'}
   ];
 
   return (
