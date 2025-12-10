@@ -54,7 +54,7 @@ body::before {
 }
 
 .nature-header h1 {
-    font-size: 3.2rem;
+    font-size: 2.8rem;
     margin-bottom: 0.5rem;
     font-weight: 700;
     letter-spacing: 1px;
@@ -63,7 +63,7 @@ body::before {
 }
 
 .subtitle {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     opacity: 0.9;
     font-style: italic;
     letter-spacing: 0.5px;
@@ -77,14 +77,14 @@ body::before {
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    min-height: calc(100vh - 200px);
     padding: 3rem 2rem;
-    position: relative;
 }
 
 .carousel-container {
     width: 100%;
-    max-width: 1200px;
-    padding: 0 80px; /* Место для стрелок */
+    max-width: 1400px;
+    margin: 0 auto;
     position: relative;
     z-index: 1;
 }
@@ -207,11 +207,16 @@ body::before {
     }
     
     .subtitle {
-        font-size: 1.1rem;
+        font-size: 1rem;
     }
     
     .nature-quote blockquote {
         font-size: 1.2rem;
+    }
+
+    .main-content {
+        min-height: calc(100vh - 180px);
+        padding: 1.5rem 0.5rem;
     }
 }
 
@@ -229,6 +234,16 @@ body::before {
     }
     
     .main-content {
-        padding: 2rem 1rem;
+        min-height: calc(100vh - 160px);
+        padding: 1rem 0.5rem;
+    }
+
+    .nature-header h1 {
+    font-size: 2.8rem;
+    margin-bottom: 0.5rem;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
     }
 }

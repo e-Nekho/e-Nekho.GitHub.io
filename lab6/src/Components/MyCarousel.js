@@ -1,43 +1,44 @@
+import React from 'react';
 import { Carousel } from 'antd';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import './MyCarousel.css';
 
 const MyCarousel = ({ images = [] }) => {
-    // Настройки для стрелок
+    // Кастомные стрелки
     const SampleNextArrow = (props) => {
-        const { className, style, onClick } = props;
+        const { className, style, onClick, currentSlide, slideCount } = props;
         return (
             <div
-                className={className}
+                className={`${className} custom-arrow`}
                 style={{
                     ...style,
-                    right: '-60px',
-                    fontSize: '24px',
-                    color: '#2d5016',
+                    display: 'block', // Важно: должно быть block
                     zIndex: 10,
                 }}
                 onClick={onClick}
             >
-                <RightOutlined />
+                <div className="arrow-content">
+                    <RightOutlined />
+                </div>
             </div>
         );
     };
 
     const SamplePrevArrow = (props) => {
-        const { className, style, onClick } = props;
+        const { className, style, onClick, currentSlide, slideCount } = props;
         return (
             <div
-                className={className}
+                className={`${className} custom-arrow`}
                 style={{
                     ...style,
-                    left: '-60px',
-                    fontSize: '24px',
-                    color: '#2d5016',
+                    display: 'block', // Важно: должно быть block
                     zIndex: 10,
                 }}
                 onClick={onClick}
             >
-                <LeftOutlined />
+                <div className="arrow-content">
+                    <LeftOutlined />
+                </div>
             </div>
         );
     };
@@ -46,14 +47,46 @@ const MyCarousel = ({ images = [] }) => {
         dots: true,
         infinite: true,
         speed: 500,
-        slidesToShow: 1,
+        slidesToShow: 3,
         slidesToScroll: 1,
-        autoplay: true,
-        autoplaySpeed: 3000,
+        autoplay: false,
         arrows: true,
         nextArrow: <SampleNextArrow />,
         prevArrow: <SamplePrevArrow />,
         dotsClass: 'nature-dots',
+        responsive: [
+            {
+                breakpoint: 1200,
+                settings: {
+                    slidesToShow: 3,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 992,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                }
+            },
+            {
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2,
+                    slidesToScroll: 1,
+                    arrows: true,
+                }
+            },
+            {
+                breakpoint: 576,
+                settings: {
+                    slidesToShow: 1,
+                    slidesToScroll: 1,
+                    arrows: false,
+                    dots: true,
+                }
+            }
+        ]
     };
 
     return (
@@ -68,8 +101,8 @@ const MyCarousel = ({ images = [] }) => {
                                 className="nature-image"
                             />
                             <div className="image-overlay">
-                                <h3>Природная гармония</h3>
-                                <p>Фото {index + 1} из {images.length}</p>
+                                <h3>Природа #{index + 1}</h3>
+                                <p>Исследуйте красоту мира</p>
                             </div>
                         </div>
                     </div>
