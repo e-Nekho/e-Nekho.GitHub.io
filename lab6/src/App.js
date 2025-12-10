@@ -2,16 +2,26 @@ import React from 'react';
 import MyCarousel from './Components/MyCarousel';
 import './App.css';
 
+// Импортируем изображения
+import nature1 from './images/nature1.jpg';
+import nature2 from './images/nature2.jpg';
+import nature3 from './images/nature3.jpg';
+import nature4 from './images/nature4.jpg';
+import nature5 from './images/nature5.jpg';
+import nature6 from './images/nature6.jpg';
+import nature7 from './images/nature7.jpg';
+import nature8 from './images/nature8.jpg';
+
 function App() {
   const images = [
-    {url: process.env.PUBLIC_URL + '/images/nature1.jpg'},
-    {url: process.env.PUBLIC_URL + '/images/nature2.jpg'},
-    {url: process.env.PUBLIC_URL + '/images/nature3.jpg'},
-    {url: process.env.PUBLIC_URL + '/images/nature4.jpg'},
-    {url: process.env.PUBLIC_URL + '/images/nature5.jpg'},
-    {url: process.env.PUBLIC_URL + '/images/nature6.jpg'},
-    {url: process.env.PUBLIC_URL + '/images/nature7.jpg'},
-    {url: process.env.PUBLIC_URL + '/images/nature8.jpg'}
+    {url: nature1},
+    {url: nature2},
+    {url: nature3},
+    {url: nature4},
+    {url: nature5},
+    {url: nature6},
+    {url: nature7},
+    {url: nature8}
   ];
 
   return (
