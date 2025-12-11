@@ -97,8 +97,12 @@ const MyCarousel = ({ images = [] }) => {
                         <div className="image-frame">
                             <img 
                                 src={image.url}
-                                alt={`Природный пейзаж ${index + 1}`}
+                                alt={image.alt || `Природный пейзаж ${index + 1}`}
                                 className="nature-image"
+                                onError={(e) => {
+                                    e.target.onerror = null;
+                                    e.target.src = `${process.env.PUBLIC_URL}/images/placeholder.jpg`;
+                                }}
                             />
                             <div className="image-overlay">
                                 <h3>Природа #{index + 1}</h3>

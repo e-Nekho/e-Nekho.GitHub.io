@@ -1,28 +1,30 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import MyCarousel from './Components/MyCarousel';
 import './App.css';
 
-// Импортируем изображения
-import nature1 from './images/nature1.jpg';
-import nature2 from './images/nature2.jpg';
-import nature3 from './images/nature3.jpg';
-import nature4 from './images/nature4.jpg';
-import nature5 from './images/nature5.jpg';
-import nature6 from './images/nature6.jpg';
-import nature7 from './images/nature7.jpg';
-import nature8 from './images/nature8.jpg';
-
 function App() {
-  const images = [
-    {url: nature1},
-    {url: nature2},
-    {url: nature3},
-    {url: nature4},
-    {url: nature5},
-    {url: nature6},
-    {url: nature7},
-    {url: nature8}
-  ];
+  const [images, setImages] = useState([]);
+
+  useEffect(() => {
+    // Динамическая загрузка изображений
+    const imagePaths = [
+      'images/nature1.jpg',
+      'images/nature2.jpg',
+      'images/nature3.jpg',
+      'images/nature4.jpg',
+      'images/nature5.jpg',
+      'images/nature6.jpg',
+      'images/nature7.jpg',
+      'images/nature8.jpg'
+    ];
+
+    const loadedImages = imagePaths.map((path, index) => ({
+      url: `${process.env.PUBLIC_URL}/${path}`,
+      alt: `Природа ${index + 1}`
+    }));
+
+    setImages(loadedImages);
+  }, []);
 
   return (
     <div className="App">
@@ -33,19 +35,16 @@ function App() {
       
       <main className="main-content">
         <div className="carousel-container">
-          <MyCarousel images={images} />
-        </div>
-        
-        <div className="nature-quote">
-          <blockquote>
-            "Природа — это бесконечная сфера, центр которой везде, а окружность нигде"
-            <footer>— Блез Паскаль</footer>
-          </blockquote>
+          {images.length > 0 ? (
+            <MyCarousel images={images} />
+          ) : (
+            <div className="loading">Загрузка изображений...</div>
+          )}
         </div>
       </main>
       
       <footer className="nature-footer">
-        <p>© 2025 Галерея Природы.</p>
+        <p>© 2024 Галерея Природы</p>
       </footer>
     </div>
   );
