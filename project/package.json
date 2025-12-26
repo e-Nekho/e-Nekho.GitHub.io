@@ -1,7 +1,6 @@
 {
   "name": "react-project",
   "version": "1.0.0",
-  "homepage": "https://e-nekho.github.io",
   "private": true,
   "dependencies": {
     "@ant-design/icons": "^5.2.6",
